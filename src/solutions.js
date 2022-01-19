@@ -295,6 +295,9 @@ function parseDateString(value) {
  ******************************************************************************/
 
 function toDateString(value) {
+  return `${value.getFullYear()}-${
+    value.getMonth() + 1 < 10 ? `0${value.getMonth() + 1}` : value.getMonth() + 1
+  }-${value.getDate() + 1 < 10 ? `0${value.getDate()}` : value.getDate()}`;
   // Replace this comment with your code...
 }
 
