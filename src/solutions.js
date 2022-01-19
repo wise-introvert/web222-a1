@@ -562,6 +562,47 @@ function mimeFromFilename(filename) {
  ******************************************************************************/
 
 function generateLicenseLink(licenseCode, targetBlank) {
+  let abb;
+
+  switch (licenseCode) {
+    case 'CC-BY':
+      console.log('CC-BY');
+      abb = 'Creative Commons Attribution License';
+      break;
+    case 'CC-BY-NC':
+      console.log('CC-BY-NC');
+      abb = 'Creative Commons Attribution-NonCommercial License';
+      break;
+    case 'CC-BY-SA':
+      console.log('CC-BY-SA');
+      abb = 'Creative Commons Attribution-ShareAlike License';
+      break;
+    case 'CC-BY-ND':
+      console.log('CC-BY-ND');
+      abb = 'Creative Commons Attribution-NoDerivs License';
+      break;
+    case 'CC-BY-NC-SA':
+      console.log('CC-BY-NC-SA');
+      abb = 'Creative Commons Attribution-NonCommercial-ShareAlike License';
+      break;
+    case 'CC-BY-NC-ND':
+      console.log('CC-BY-NC-ND');
+      abb = 'Creative Commons Attribution-NonCommercial-NoDerivs License';
+      break;
+    default:
+      abb = undefined;
+      break;
+  }
+
+  const license = licenseCode.substr(licenseCode.indexOf('-')).replace(/^-/gi, '').toLowerCase();
+  console.log(license);
+
+  const url = `https://creativecommons.org/licenses/${license}/4.0/`;
+  const attributes = `href="${abb ? url : 'https://choosealicense.com/no-permission/'}"${
+    targetBlank ? ` target="_blank"` : ''
+  }`;
+
+  return `<a ${attributes}>${abb}</a>`;
   // Replace this comment with your code...
 }
 
