@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-escape */
 /**
  * WEB222 – Assignment 1
  *
@@ -134,7 +135,7 @@ function snake(value) {
   return value
     .trim()
     .toLowerCase()
-    .replace(/[ \t\.]+/gi, '_');
+    .replace(/[ \t.]+/gi, '_');
   // Replace this comment with your code...
 }
 
@@ -257,9 +258,8 @@ function parseDateString(value) {
     date = new Date(date.setDate(parseInt(splitArray[2])));
 
     return date;
-  } else {
-    throw new Error('invalid date string, expected a `YYYY-DD-MM` formatted string');
   }
+  throw new Error('invalid date string, expected a `YYYY-DD-MM` formatted string');
   // Replace this comment with your code...
 }
 
@@ -348,21 +348,20 @@ function normalizeCoord(value) {
     }
 
     return `(${lat}, ${long})`;
-  } else {
-    const lat = value.split(',')[0].trim();
-    const long = value.split(',')[1].trim();
-
-    if (
-      parseFloat(lat) < -90 ||
-      parseFloat(lat) > 90 ||
-      parseFloat(long) < -180 ||
-      parseFloat(long) > 180
-    ) {
-      throw new Error('alkdfj');
-    }
-
-    return `(${lat}, ${long})`;
   }
+  const lat = value.split(',')[0].trim();
+  const long = value.split(',')[1].trim();
+
+  if (
+    parseFloat(lat) < -90 ||
+    parseFloat(lat) > 90 ||
+    parseFloat(long) < -180 ||
+    parseFloat(long) > 180
+  ) {
+    throw new Error('alkdfj');
+  }
+
+  return `(${lat}, ${long})`;
 }
 
 /*******************************************************************************
@@ -397,7 +396,9 @@ function formatCoords(...values) {
     .map((value) => {
       try {
         return normalizeCoord(value);
-      } catch (err) {}
+      } catch (err) {
+        // TODO
+      }
     })
     .filter((v) => !!v);
 
