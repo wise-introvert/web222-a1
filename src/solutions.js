@@ -196,6 +196,10 @@ function snake(value) {
  ******************************************************************************/
 
 function createVideo(src, width, controls) {
+  let attributes = `src="${src.trim()}" ${width >= 1 ? `width="${width}"` : ''}${
+    controls ? ' controls' : ''
+  }`.trim();
+  return `<video ${attributes}></video>`;
   // Replace this comment with your code...
 }
 
