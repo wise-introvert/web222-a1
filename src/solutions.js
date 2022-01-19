@@ -61,13 +61,13 @@
  *   Expected: "Hello WEB222 Student!"
  *   Received: "Hello WEB222 Student"
  *
- *     63 |   test('greeting should return the correct string output', function() {
- *     64 |     let result = greeting('WEB222 Student');
- *   > 65 |     expect(result).toBe('Hello WEB222 Student!');
- *        |                    ^
- *     66 |   });
+ *     63|  test('greeting should return the correct string output', function() {
+ *     64|    let result = greeting('WEB222 Student');
+ *   > 65|    expect(result).toBe('Hello WEB222 Student!');
+ *       |                   ^
+ *     66|  });
  *     67 |
- *     68 |   /**
+ *     68|  /**
  *
  * We can see that the second test 'greeting should return the correct string output'
  * is failing. In particular, it's failing because it expected to get the string
@@ -735,6 +735,11 @@ function none(...values) {
  ******************************************************************************/
 
 function buildUrl(query, order, count, license) {
+  if (count < 1 || count > 50) throw new Error('');
+  if (!/(ascending|descending)/gi.test(order)) throw new Error('');
+  if (!/(none|any|cc-by|cc-by-nc|cc-by-sa|cc-by-nd|cc-by-nc-sa|cc-by-nc-nd)/gi.test(license))
+    throw new Error('');
+  return `https://api.inaturalist.org/v2/observations?query=${query}&count=${count}&order=${order}&license=${license}`;
   // Replace this comment with your code...
 }
 
