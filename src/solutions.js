@@ -131,6 +131,10 @@ function greeting(name) {
  ******************************************************************************/
 
 function snake(value) {
+  return value
+    .trim()
+    .toLowerCase()
+    .replace(/[ \t\.]+/gi, '_');
   // Replace this comment with your code...
 }
 
