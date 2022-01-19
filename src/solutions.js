@@ -328,7 +328,41 @@ function toDateString(value) {
  ******************************************************************************/
 
 function normalizeCoord(value) {
-  // Replace this comment with your code...
+  if (value.includes('[')) {
+    const lat = value
+      .replace(/[\[\]]/gi, '')
+      .split(',')[1]
+      .trim();
+    const long = value
+      .replace(/[\[\]]/gi, '')
+      .split(',')[0]
+      .trim();
+
+    if (
+      parseFloat(lat) < -90 ||
+      parseFloat(lat) > 90 ||
+      parseFloat(long) < -180 ||
+      parseFloat(long) > 180
+    ) {
+      throw new Error('alkdfj');
+    }
+
+    return `(${lat}, ${long})`;
+  } else {
+    const lat = value.split(',')[0].trim();
+    const long = value.split(',')[1].trim();
+
+    if (
+      parseFloat(lat) < -90 ||
+      parseFloat(lat) > 90 ||
+      parseFloat(long) < -180 ||
+      parseFloat(long) > 180
+    ) {
+      throw new Error('alkdfj');
+    }
+
+    return `(${lat}, ${long})`;
+  }
 }
 
 /*******************************************************************************
