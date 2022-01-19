@@ -249,6 +249,17 @@ function createVideo(src, width, controls) {
  ******************************************************************************/
 
 function parseDateString(value) {
+  if (/\d\d\d\d-\d\d-\d\d/gi.test(value)) {
+    const splitArray = value.split('-');
+    let date = new Date();
+    date = new Date(date.setFullYear(parseInt(splitArray[0])));
+    date = new Date(date.setMonth(parseInt(splitArray[1]) - 1));
+    date = new Date(date.setDate(parseInt(splitArray[2])));
+
+    return date;
+  } else {
+    throw new Error('invalid date string, expected a `YYYY-DD-MM` formatted string');
+  }
   // Replace this comment with your code...
 }
 
