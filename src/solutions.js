@@ -393,6 +393,15 @@ function normalizeCoord(value) {
  ******************************************************************************/
 
 function formatCoords(...values) {
+  const final = values
+    .map((value) => {
+      try {
+        return normalizeCoord(value);
+      } catch (err) {}
+    })
+    .filter((v) => !!v);
+
+  return final.length > 0 ? `(${final.join(', ')})` : `()`;
   // Replace this comment with your code...
 }
 
