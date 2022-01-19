@@ -626,7 +626,33 @@ function generateLicenseLink(licenseCode, targetBlank) {
  ******************************************************************************/
 
 function pureBool(value) {
-  // Replace this comment with your code...
+  if (typeof value === 'number') return value > 0;
+  else if (typeof value === 'boolean') return value;
+  try {
+    value = value.toLowerCase();
+  } catch (err) {
+    throw new Error('invalid value');
+  }
+  switch (value) {
+    case 'yes':
+    case 'y':
+    case 'oui':
+    case 'o':
+    case 'true':
+    case 't':
+    case 'v':
+    case 'vrai':
+      return true;
+    case 'no':
+    case 'non':
+    case 'n':
+    case 'f':
+    case 'false':
+    case 'faux':
+      return false;
+    default:
+      throw new Error('');
+  }
 }
 
 /*******************************************************************************
@@ -643,15 +669,18 @@ function pureBool(value) {
  * throws on invalid data.
  ******************************************************************************/
 
-function every() {
+function every(...values) {
+  return values.every((v) => pureBool(v));
   // Replace this comment with your code...
 }
 
-function any() {
+function any(...values) {
+  return values.some((v) => pureBool(v));
   // Replace this comment with your code...
 }
 
-function none() {
+function none(...values) {
+  return values.every((v) => !pureBool(v));
   // Replace this comment with your code...
 }
 
